@@ -1,0 +1,97 @@
+/* CSS Style for Q1 */
+#wrapper{
+    max-width: 640px;
+    margin: 30px auto 30px;
+    padding: 4px;
+    background-color: #F4F4EE;
+}
+
+body,
+h1,
+h2,
+h3,
+p,
+a,
+fieldset,
+button,
+figcaption,
+ul{
+  margin: 0;
+  padding: 0;
+}
+
+body{
+    background-color: #656868;
+}
+
+header{
+    background-image: url('../img/header.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+    width: 620px;
+    height: 110px;
+    padding: 30px 0 0 20px;
+}
+
+header>div>h1{
+    color:#FCF8E3;
+}
+
+header>div>h3{
+    color:#E2D179;
+}
+
+main{
+    display: flex;
+}
+
+#sectionLeft{
+    padding: 0 10px 0;
+    width: 480px;
+    background-color: #E2D179;
+}
+
+main>section>article>h3{
+    color: #A0410D;
+    padding: 10px 0 10px;
+}
+
+main>section>article>p{
+    color: #333333;
+}
+
+#sectionRight{
+    width: 160px;
+    background-color: goldenrod;
+    padding: 0 10px 0;
+}
+main>section>h4{
+    background-color: #595A38;
+    color: #FCF8E3;
+    border: 1px solid #3A3B22;
+    margin: 10px 0 10px;
+    padding: 2px;
+}
+main>section>nav{
+    padding: 20px 0 20px;
+    padding-left: 20px;
+}
+
+main>section>nav>ul>li{
+    list-style: square;
+    padding: 2px 0 2px;
+    text-align: left;
+}
+
+footer{
+    background-image: url('../img/footer.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+    width: 640px;
+    height: 70px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    color: #FCF8E3;
+}

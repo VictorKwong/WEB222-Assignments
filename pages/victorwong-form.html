@@ -1,0 +1,190 @@
+<!-- /******************************************************************************
+*
+* WEB222 – Assignment 5
+* I declare that this assignment is my own work in accordance with Seneca Academic Policy.
+* No part of this assignment has been copied manually or electronically from any other source
+* (including web sites) or distributed to other students.
+*
+* Name: Victor Wong Student ID: 156340200 Date: 30-Oct-2022
+*
+******************************************************************************
+*/ -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Summer Camp Form</title>
+    <link rel="stylesheet" href="../css/forms.css">
+</head>
+<script>
+    let validPasswordEnterField = false;
+
+    let completeID = false;
+    let completeZipCode = false;
+    let completePassword = false;
+
+    validID = () => {
+        let studentID = document.getElementById('studentID').value.trim();
+        let regex = /^[Ww]0[0-9][0-9][0-9][0-9][0-9]$/;
+
+        if(!regex.test(studentID)){
+            document.getElementById('errorID').innerHTML = "Student ID must be start with 'w0' or 'W0' follow by 5 digits. Ex.W012345";
+            document.getElementById('studentID').style.border = "3px solid red";
+            document.getElementById('studentID').style.outline = "none";
+            document.getElementById("studentID").focus();
+            completeID = false;
+        }else{
+            document.getElementById('errorID').innerHTML = "";
+            document.getElementById('studentID').style.border = "";
+            completeID = true;
+        }
+    }
+    validZipCode = () => {
+        let zipCode = document.getElementById('zipCode').value.trim();
+        let regex = /^[A-Z][0-9][A-Z][0-9][A-Z][0-9]$/;
+
+        if(!regex.test(zipCode)){
+            document.getElementById('errorZipCode').innerHTML = "ZipCode must be 6 character, 3 alphabets uppercase and 3 digits. Ex.M2J5Y9.";
+            document.getElementById('zipCode').style.border = "3px solid red";
+            document.getElementById('zipCode').style.outline = "none";
+            document.getElementById("zipCode").focus();
+            completeZipCode = false;
+        }else{
+            document.getElementById('errorZipCode').innerHTML = "";
+            document.getElementById('zipCode').style.border = "";
+            completeZipCode = true;
+        }
+    }
+    validPassword = () => {
+        let passwordOne = document.getElementById('password').value;
+        let passwordTwo = document.getElementById('Repassword').value;
+        let regex = /^(?=.*[0-9])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{6,16}$/;
+
+        if((!(passwordOne === passwordTwo) || !regex.test(passwordOne)) && validPasswordEnterField === true){
+            if(!(passwordOne === passwordTwo)){
+                document.getElementById('errorPassword').innerHTML = "Password are not match. please make sure it is identical.";
+            }else{
+                document.getElementById('errorPassword').innerHTML = "Password should have 6 to 16 characters, follow by at least 1 number and 1 special character. Ex. A2345^";
+            }
+            document.getElementById('Repassword').style.border = "3px solid red";
+            document.getElementById('Repassword').style.outline = "none";
+            document.getElementById('password').style.border = "3px solid red";
+            document.getElementById('password').style.outline = "none";
+            completePassword = false;
+        }else{
+            document.getElementById('errorPassword').innerHTML = "";
+            document.getElementById('Repassword').style.border = "";
+            document.getElementById('password').style.border = "";
+            completePassword = true;
+        }
+    }
+    validPasswordTwo = () => {
+        validPasswordEnterField = true;
+        let passwordOne = document.getElementById('password').value;
+        let passwordTwo = document.getElementById('Repassword').value;
+        let regex = /^(?=.*[0-9])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{6,16}$/;
+
+        if(!(passwordOne === passwordTwo) || !regex.test(passwordOne)){
+            if(!(passwordOne === passwordTwo)){
+                document.getElementById('errorPassword').innerHTML = "Password are not match. please make sure it is identical.";
+            }else{
+                document.getElementById('errorPassword').innerHTML = "Password should have 6 to 16 characters, follow by at least 1 number and 1 special character. Ex. A2345^";
+            }
+            document.getElementById('Repassword').style.border = "3px solid red";
+            document.getElementById('Repassword').style.outline = "none";
+            document.getElementById('password').style.border = "3px solid red";
+            document.getElementById('password').style.outline = "none";
+            completePassword = false;
+        }else{
+            document.getElementById('errorPassword').innerHTML = "";
+            document.getElementById('Repassword').style.border = "";
+            document.getElementById('password').style.border = "";
+            completePassword = true;
+        }
+    }
+    myRegister = () => {
+        if(completePassword === true && completeID === true && completeZipCode === true){
+            document.getElementById('registerResult').style.color = '#333333';
+            document.getElementById('registerResult').innerHTML = `You registered with studentID(${document.getElementById('studentID').value.trim()}) . Thanks for registering in Summer Camp program.`;
+        }else{
+            document.getElementById('registerResult').style.color = 'red';
+            document.getElementById('registerResult').innerHTML = "Please fill out all the requirements!";
+        }
+
+    }
+</script>
+<body>
+	<div id="wrapper">
+		<header>
+			<div>
+				<h1>N A T U R E</h1>
+				<h3>The Physical Universe</h3>
+			</div>
+		</header>
+		<main>
+			<section id="sectionLeft">
+                <div id="formBox">
+                    <h4 id="titleForm">Summer Camp</h4>
+                    <form action="./result.html" method="GET" id="innerFormBox">
+                        <div>
+                            <label for="studentID">Student ID: <input type="text" id="studentID" name="studentID" placeholder="w069XXX or W069XXX" onblur="validID()"></label>
+                            <span id="errorID"></span>
+                        </div>
+                        <div>
+                            <label for="zipCode">ZIP Code: <input type="text" id="zipCode" name="zipCode" placeholder="ex. M2J4P9" onblur="validZipCode()"></label>
+                            <span id="errorZipCode"></span>
+                        </div>
+                            <label for="password" id="passwordBox">Password: <input type="password" id="password" name="password" onblur="validPassword()"></label>
+                        <div>
+                            <label for="password">Retype Password: <input type="password" id="Repassword" name="password" onblur="validPasswordTwo()"></label>
+                            <span id="errorPassword"></span>
+                        </div>
+                        <input id="buttonReg" type="button" value="Register" onclick="myRegister();">
+                    </form>
+                </div>
+                <div id="registerResult"></div>
+			</section>
+			<section id="sectionRight">
+					<h4>&nbsp;See also</h4>
+					<p>Science:</p>
+					<nav>
+						<ul>
+							<li><a href="http://en.wikipedia.org/wiki/Natural_history" title="Natural history">Natural history</a></li>
+							<li><a href="http://en.wikipedia.org/wiki/Natural_philosophy" title="Natural philosophy">Natural philosophy</a></li>
+							<li><a href="http://en.wikipedia.org/wiki/Natural_science" title="Natural science">Natural science</a></li>
+						</ul>
+					</nav>
+
+					<p>Philosophy:</p>
+					<nav>
+						<ul>
+							<li><a href="http://en.wikipedia.org/wiki/Nature_%28philosophy%29" title="Nature (philosophy)">Nature (philosophy)</a></li>
+							<li><a href="http://en.wikipedia.org/wiki/Mother_Nature" title="Mother Nature">Mother Nature</a></li>
+							<li><a href="http://en.wikipedia.org/wiki/Naturalism_%28philosophy%29" title="Naturalism (philosophy)">Naturalism (philosophy)</a></li>
+						</ul>
+					</nav>
+					
+					<p>Organizations:</p>
+					<nav>
+						<ul>
+							<li><a href="http://en.wikipedia.org/wiki/The_Nature_Conservancy" title="The Nature Conservancy">The Nature Conservancy</a></li>
+							<li><a href="http://en.wikipedia.org/wiki/Nature_Detectives" title="Nature Detectives">Nature Detectives</a></li>
+						</ul>
+					</nav>
+
+					<nav>
+						<ul>
+							<li><a href="./index.html" title="Back to Home">Back to Home</a></li>
+						</ul>
+					</nav>
+			</section>
+		</main>
+
+		<footer>
+			<p>&copy; Copyright 2008 Wikipedia</p>
+		</footer>
+	</div>
+</body>
+</html>
